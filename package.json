@@ -16,6 +16,7 @@
   "author": "Ebenezer Don",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-express": "^3.6.7",
     "express": "^4.17.3",
     "express-graphql": "^0.12.0",
     "graphql": "^15.8.0"

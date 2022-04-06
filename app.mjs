@@ -1,29 +1,24 @@
 import express from 'express'
-import { graphqlHTTP} from 'express-graphql'
-import { buildSchema } from 'graphql'
+import { ApolloServer, gql } from 'apollo-server-express'
 
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`)
+const typeDefs = gql`
+    type Query {
+        hello: String
+    }
+`
 
-const root = {
-  hello: () => {
-    return 'Hello world!'
+const resolvers = {
+  Query: {
+    hello: () => 'Hello world!'
   }
 }
 
+const server = new ApolloServer({ typeDefs, resolvers })
 const app = express()
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true
-}))
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+await server.start()
+
+server.applyMiddleware({ app })
 
 const port = process.env.PORT || 3000
 
