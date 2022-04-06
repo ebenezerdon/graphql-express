@@ -1,6 +1,6 @@
-import { ApolloServer, gql } from 'apollo-server-express'
+import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
-import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql'
+import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 import { noteMutation } from './schema/mutations.mjs'
 import noteQueries from './schema/queries.mjs'
 
